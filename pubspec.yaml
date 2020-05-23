@@ -74,3 +74,8 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: Cabin
+      fonts:
+        - asset: assets/fonts/Cabin-Regular.otf
+        - asset: assets/fonts/Cabin-Bold.otf
