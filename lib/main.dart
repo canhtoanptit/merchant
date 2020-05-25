@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:merchant/models/app_settings.dart';
+import 'package:merchant/pages/measure_converter.dart';
 import 'package:merchant/pages/page_container.dart';
+import 'package:merchant/pages/work_timer_page.dart';
 import 'package:merchant/styles.dart';
 
 void main() {
@@ -36,6 +38,10 @@ class MyApp extends StatelessWidget {
       title: 'Merchant App',
       debugShowCheckedModeBanner: false,
       theme: theme,
+      routes: {
+        '/measure-converter': (context) => MeasureConverter(),
+        '/work-timer' : (context) => WorkTimerPage()
+      },
       home: PageContainer(settings: appSettings),
     );
   }

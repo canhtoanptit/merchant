@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:merchant/models/app_settings.dart';
-import 'package:merchant/pages/forcast_page.dart';
+import 'package:merchant/pages/forecast_page.dart';
 
 class PageContainer extends StatefulWidget {
   final AppSettings settings;
