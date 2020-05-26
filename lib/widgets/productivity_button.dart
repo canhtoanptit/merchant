@@ -4,9 +4,9 @@ class ProductivityButton extends StatelessWidget {
 
   final Color color;
   final String text;
+  final VoidCallback onPressed;
 
-
-  ProductivityButton({this.color, this.text});
+  ProductivityButton({this.color, this.text, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class ProductivityButton extends StatelessWidget {
         this.text,
         style: TextStyle(color: Colors.white),
       ),
-      color: this.color, onPressed: () {  },
+      color: this.color, onPressed: this.onPressed,
     );
   }
 
