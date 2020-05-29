@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:merchant/models/app_settings.dart';
 import 'package:merchant/pages/measure_converter.dart';
 import 'package:merchant/pages/page_container.dart';
+import 'package:merchant/pages/ping_pong_page.dart';
 import 'package:merchant/pages/work_timer_page.dart';
 import 'package:merchant/styles.dart';
 
@@ -40,7 +41,8 @@ class MyApp extends StatelessWidget {
       theme: theme,
       routes: {
         '/measure-converter': (context) => MeasureConverter(),
-        '/work-timer' : (context) => WorkTimerPage()
+        '/work-timer' : (context) => WorkTimerPage(),
+        '/ping-pong': (context) => PingPongPage()
       },
       home: PageContainer(settings: appSettings),
     );

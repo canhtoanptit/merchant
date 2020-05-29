@@ -49,6 +49,13 @@ class _ForecastPageState extends State<ForecastPage> {
                         child: Text('Work Timer'),
                         onPressed: () => Navigator.pushNamed(context, '/work-timer'),
                       ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(15),
+                      child: RaisedButton(
+                        child: Text('Ping Pong'),
+                        onPressed: () => Navigator.pushNamed(context, '/ping-pong'),
+                      ),
                     )
                   ]),
                 ))));
