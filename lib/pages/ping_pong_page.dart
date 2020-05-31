@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:merchant/constants/direction_enum.dart';
 import 'package:merchant/widgets/ball.dart';
 import 'package:merchant/widgets/bat.dart';
 
@@ -33,13 +34,25 @@ class _PingPongState extends State<PingPong>
   double batPosition = 0;
   Animation<double> animation;
   AnimationController controller;
+  Direction vDir = Direction.down;
+  Direction hDir = Direction.right;
+  double increment = 5;
 
   @override
   void initState() {
     posX = 0;
     posY = 0;
     controller =
-        AnimationController(duration: const Duration(seconds: 3), vsync: this);
+        AnimationController(duration: const Duration(minutes: 10), vsync: this);
+    animation = Tween<double>(begin: 0, end: 100).animate(controller);
+    animation.addListener(() {
+      setState(() {
+        (hDir == Direction.right) ? posX += increment : posX -= increment;
+        (vDir == Direction.down) ? posY += increment : posY -= increment;
+      });
+      checkBorders();
+    });
+    controller.forward();
     super.initState();
   }
 
@@ -49,21 +62,47 @@ class _PingPongState extends State<PingPong>
       builder: (BuildContext context, BoxConstraints constraints) {
         height = constraints.maxHeight;
         width = constraints.maxWidth;
-        batWidth = width / 2;
-        batHeight = height / 2;
+        batWidth = width / 5;
+        batHeight = height / 20;
         return Stack(
           children: <Widget>[
             Positioned(
               child: Ball(),
-              top: 0,
+              top: posY,
+              left: posX,
             ),
             Positioned(
-              bottom: 0,
-              child: Bat(batWidth, batHeight),
-            )
+                bottom: 0,
+                left: batPosition,
+                child: GestureDetector(
+                  onHorizontalDragUpdate: (DragUpdateDetails update) =>
+                      moveBat(update),
+                  child: Bat(batWidth, batHeight),
+                ))
           ],
         );
       },
     );
+  }
+
+  void checkBorders() {
+    if (posX <= 0 && hDir == Direction.left) {
+      hDir = Direction.right;
+    }
+    if (posX >= width - 50 && hDir == Direction.right) {
+      hDir = Direction.left;
+    }
+    if (posY >= height - 50 && vDir == Direction.down) {
+      vDir = Direction.up;
+    }
+    if (posY <= 0 && vDir == Direction.up) {
+      vDir = Direction.down;
+    }
+  }
+
+  void moveBat(DragUpdateDetails update) {
+    setState(() {
+      batPosition += update.delta.dx;
+    });
   }
 }
