@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:merchant/models/app_settings.dart';
 import 'package:merchant/pages/measure_converter.dart';
+import 'package:merchant/pages/movies_page.dart';
 import 'package:merchant/pages/page_container.dart';
 import 'package:merchant/pages/ping_pong_page.dart';
 import 'package:merchant/pages/work_timer_page.dart';
@@ -8,10 +9,6 @@ import 'package:merchant/styles.dart';
 
 void main() {
   AppSettings settings = AppSettings();
-//
-//  SystemChrome.setPreferredOrientations(
-//          [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
-//      .then((value) => runApp(MyApp(appSettings: settings)));
   runApp(MyApp(
     appSettings: settings,
   ));
@@ -42,7 +39,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/measure-converter': (context) => MeasureConverter(),
         '/work-timer' : (context) => WorkTimerPage(),
-        '/ping-pong': (context) => PingPongPage()
+        '/ping-pong': (context) => PingPongPage(),
+        '/movies': (context) => MoviesPage()
       },
       home: PageContainer(settings: appSettings),
     );
