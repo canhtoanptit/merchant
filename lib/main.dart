@@ -4,6 +4,7 @@ import 'package:merchant/pages/measure_converter.dart';
 import 'package:merchant/pages/movies_page.dart';
 import 'package:merchant/pages/page_container.dart';
 import 'package:merchant/pages/ping_pong_page.dart';
+import 'package:merchant/pages/shopping_page.dart';
 import 'package:merchant/pages/work_timer_page.dart';
 import 'package:merchant/styles.dart';
 
@@ -40,7 +41,8 @@ class MyApp extends StatelessWidget {
         '/measure-converter': (context) => MeasureConverter(),
         '/work-timer' : (context) => WorkTimerPage(),
         '/ping-pong': (context) => PingPongPage(),
-        '/movies': (context) => MoviesPage()
+        '/movies': (context) => MoviesPage(),
+        '/shop' : (context) => ShoppingPage()
       },
       home: PageContainer(settings: appSettings),
     );
