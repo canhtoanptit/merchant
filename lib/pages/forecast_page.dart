@@ -20,15 +20,8 @@ class _ForecastPageState extends State<ForecastPage> {
         body: Builder(
             builder: (context) => Padding(
                 padding: EdgeInsets.all(20.0),
-                child: Center(
+                child: SingleChildScrollView(
                   child: Column(children: [
-                    Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: Text(
-                          "I'm here",
-                          style: TextStyle(
-                              fontSize: 20, color: Colors.deepPurpleAccent),
-                        )),
                     Padding(
                         padding: EdgeInsets.all(5.0),
                         child: Image.network(
@@ -69,6 +62,13 @@ class _ForecastPageState extends State<ForecastPage> {
                       child: RaisedButton(
                         child: Text('Shopping'),
                         onPressed: () => Navigator.pushNamed(context, '/shop'),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(15),
+                      child: RaisedButton(
+                        child: Text('Event'),
+                        onPressed: () => Navigator.pushNamed(context, '/event'),
                       ),
                     )
                   ]),

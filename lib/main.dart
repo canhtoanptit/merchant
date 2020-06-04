@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:merchant/models/app_settings.dart';
+import 'package:merchant/pages/launch_page.dart';
 import 'package:merchant/pages/measure_converter.dart';
 import 'package:merchant/pages/movies_page.dart';
 import 'package:merchant/pages/page_container.dart';
@@ -39,10 +40,11 @@ class MyApp extends StatelessWidget {
       theme: theme,
       routes: {
         '/measure-converter': (context) => MeasureConverter(),
-        '/work-timer' : (context) => WorkTimerPage(),
+        '/work-timer': (context) => WorkTimerPage(),
         '/ping-pong': (context) => PingPongPage(),
         '/movies': (context) => MoviesPage(),
-        '/shop' : (context) => ShoppingPage()
+        '/shop': (context) => ShoppingPage(),
+        '/event': (context) => LaunchPage()
       },
       home: PageContainer(settings: appSettings),
     );
