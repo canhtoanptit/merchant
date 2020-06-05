@@ -26,8 +26,6 @@ class _LoginInfoState extends State<LoginInfo> {
   bool _isLogin = false;
   Authentication auth;
   String _userId;
-  String _password;
-  String _email;
   String _errorMessage = "";
 
   @override
@@ -91,13 +89,16 @@ class _LoginInfoState extends State<LoginInfo> {
     return Padding(
         padding: EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
         child: Container(
-            height: 50,
+            height: 40.0,
             child: RaisedButton(
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              color: Theme.of(context).accentColor,
-              elevation: 3,
-              child: Text(buttonText),
+                  borderRadius: BorderRadius.circular(30)),
+              color: Colors.blue,
+              elevation: 5.0,
+              child: Text(
+                buttonText,
+                style: TextStyle(fontSize: 20.0, color: Colors.white),
+              ),
               onPressed: () => submit(),
             )));
   }
@@ -105,7 +106,10 @@ class _LoginInfoState extends State<LoginInfo> {
   Widget secondaryButton() {
     String buttonText = !_isLogin ? 'Login' : 'Sign up';
     return FlatButton(
-      child: Text(buttonText),
+      child: Text(
+        buttonText,
+        style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),
+      ),
       onPressed: () {
         setState(() {
           _isLogin = !_isLogin;
@@ -142,7 +146,7 @@ class _LoginInfoState extends State<LoginInfo> {
       }
       if (_userId != null) {
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => EventDetailPage()));
+            MaterialPageRoute(builder: (context) => EventDetailPage(_userId)));
       }
     } catch (e) {
       print('Error: $e');

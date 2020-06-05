@@ -27,7 +27,7 @@ class _LaunchPageState extends State<LaunchPage> {
     auth.getUser().then((user) {
       MaterialPageRoute route;
       if (user != null) {
-        route = MaterialPageRoute(builder: (context) => EventDetailPage());
+        route = MaterialPageRoute(builder: (context) => EventDetailPage(user.uid));
       } else {
         route = MaterialPageRoute(builder: (context) => LoginPage());
       }
