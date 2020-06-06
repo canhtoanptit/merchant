@@ -30,45 +30,52 @@ class _ForecastPageState extends State<ForecastPage> {
                           width: 100,
                         )),
                     Padding(
-                      padding: EdgeInsets.all(15),
+                      padding: EdgeInsets.all(5),
                       child: RaisedButton(
                         child: Text('Contact us'),
                         onPressed: () => _contactUs(context),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(15),
+                      padding: EdgeInsets.all(5),
                       child: RaisedButton(
                         child: Text('Work Timer'),
                         onPressed: () => Navigator.pushNamed(context, '/work-timer'),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(15),
+                      padding: EdgeInsets.all(5),
                       child: RaisedButton(
                         child: Text('Ping Pong'),
                         onPressed: () => Navigator.pushNamed(context, '/ping-pong'),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(15),
+                      padding: EdgeInsets.all(5),
                       child: RaisedButton(
                         child: Text('Movies'),
                         onPressed: () => Navigator.pushNamed(context, '/movies'),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(15),
+                      padding: EdgeInsets.all(5),
                       child: RaisedButton(
                         child: Text('Shopping'),
                         onPressed: () => Navigator.pushNamed(context, '/shop'),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(15),
+                      padding: EdgeInsets.all(5),
                       child: RaisedButton(
                         child: Text('Event'),
                         onPressed: () => Navigator.pushNamed(context, '/event'),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(5),
+                      child: RaisedButton(
+                        child: Text('Treasure'),
+                        onPressed: () => Navigator.pushNamed(context, '/treasure'),
                       ),
                     )
                   ]),

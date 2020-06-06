@@ -1,12 +1,13 @@
 import 'dart:async';
 
 import 'package:merchant/models/list_item.dart';
+import 'package:merchant/models/place_model.dart';
 import 'package:merchant/models/shopping_list.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DbHelper {
-  final int version = 1;
+  final int version = 2;
   Database db;
   static const String ITEM_TABLE = 'items';
   static const String LIST_TABLE = 'list';
@@ -28,6 +29,8 @@ class DbHelper {
         database.execute(
             'CREATE TABLE items(id INTEGER PRIMARY KEY, idList INTEGER, name TEXT, quantity TEXT, note TEXT, ' +
                 'FOREIGN KEY(idList) REFERENCES lists(id))');
+        database.execute(
+            'CREATE TABLE places(id INTEGER PRIMARY KEY, name TEXT, lat DOUBLE, lon DOUBLE, image TEXT)');
       }, version: version);
     }
     return db;
@@ -80,5 +83,30 @@ class DbHelper {
   Future<int> deleteItem(ListItem itemList) async {
     return await db
         .delete(ITEM_TABLE, where: "id = ?", whereArgs: [itemList.id]);
+  }
+
+  Future<List<Place>> getPlaces() async {
+    final List<Map<String, dynamic>> maps = await db.query('places');
+    return List.generate(maps.length, (i) {
+      return Place(
+        maps[i]['id'],
+        maps[i]['name'],
+        maps[i]['lat'],
+        maps[i]['lon'],
+        maps[i]['image'],
+      );
+    });
+  }
+
+  Future insertMockData() async {
+    db = await openDb();
+    await db.execute(
+        'INSERT INTO places VALUES (1,"Beautiful park", 41.9294115, 12.5380785, "")');
+    await db.execute(
+        'INSERT INTO places VALUES (2,"Best Pizza in the world", 41.9294115, 12.5268947, "")');
+    await db.execute(
+        'INSERT INTO places VALUES (3,"The best icecream on earth", 41.9349061, 12.5339831, "")');
+    List places = await db.rawQuery('select * from places');
+    print(places[0].toString());
   }
 }

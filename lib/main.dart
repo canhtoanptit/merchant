@@ -6,6 +6,7 @@ import 'package:merchant/pages/movies_page.dart';
 import 'package:merchant/pages/page_container.dart';
 import 'package:merchant/pages/ping_pong_page.dart';
 import 'package:merchant/pages/shopping_page.dart';
+import 'package:merchant/pages/treasure_map_page.dart';
 import 'package:merchant/pages/work_timer_page.dart';
 import 'package:merchant/styles.dart';
 
@@ -44,7 +45,8 @@ class MyApp extends StatelessWidget {
         '/ping-pong': (context) => PingPongPage(),
         '/movies': (context) => MoviesPage(),
         '/shop': (context) => ShoppingPage(),
-        '/event': (context) => LaunchPage()
+        '/event': (context) => LaunchPage(),
+        '/treasure': (context) => TreasureMapPage()
       },
       home: PageContainer(settings: appSettings),
     );
