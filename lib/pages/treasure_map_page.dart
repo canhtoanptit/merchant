@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:merchant/helpers/geo_location_helper.dart';
+import 'package:merchant/models/place_model.dart';
+import 'package:merchant/widgets/place_dialog.dart';
 
 class TreasureMapPage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +36,7 @@ class _MainMapState extends State<MainMap> {
   @override
   void initState() {
     GeoLocationHelper.getCurrentLocation(
-            position.target.latitude, position.target.longitude)
+        position.target.latitude, position.target.longitude)
         .then((pos) {
       addMarker(pos, 'currpos', 'You are here!');
     }).catchError((err) => print(err.toString()));
@@ -42,9 +45,31 @@ class _MainMapState extends State<MainMap> {
 
   @override
   Widget build(BuildContext context) {
-    return GoogleMap(
-      initialCameraPosition: position,
-      markers: Set<Marker>.of(markers),
+    return Scaffold(
+      body:
+      GoogleMap(
+        initialCameraPosition: position,
+        markers: Set<Marker>.of(markers),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add_location),
+        onPressed: () {
+          int here =
+          markers.indexWhere((p) => p.markerId == MarkerId('currpos'));
+          Place place;
+          if (here == -1) {
+            //the current position is not available
+            place = Place(0, '', 0, 0, '');
+          } else {
+            LatLng pos = markers[here].position;
+            place = Place(0, '', pos.latitude, pos.longitude, '');
+          }
+          PlaceDialog dialog = PlaceDialog(place, true);
+          showDialog(
+              context: context,
+              builder: (context) => dialog.buildDialog(context));
+        },
+      ),
     );
   }
 
@@ -56,7 +81,7 @@ class _MainMapState extends State<MainMap> {
         icon: (markerId == 'currpos')
             ? BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure)
             : BitmapDescriptor.defaultMarkerWithHue(
-                BitmapDescriptor.hueOrange));
+            BitmapDescriptor.hueOrange));
     markers.add(marker);
     setState(() {
       markers = markers;

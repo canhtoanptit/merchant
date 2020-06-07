@@ -98,15 +98,11 @@ class DbHelper {
     });
   }
 
-  Future insertMockData() async {
-    db = await openDb();
-    await db.execute(
-        'INSERT INTO places VALUES (1,"Beautiful park", 41.9294115, 12.5380785, "")');
-    await db.execute(
-        'INSERT INTO places VALUES (2,"Best Pizza in the world", 41.9294115, 12.5268947, "")');
-    await db.execute(
-        'INSERT INTO places VALUES (3,"The best icecream on earth", 41.9349061, 12.5339831, "")');
-    List places = await db.rawQuery('select * from places');
-    print(places[0].toString());
+  Future<int> insertPlace(Place place) async {
+    int id = await this.db.insert( 'places',
+      place.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+    return id;
   }
 }
