@@ -77,6 +77,13 @@ class _ForecastPageState extends State<ForecastPage> {
                         child: Text('Treasure'),
                         onPressed: () => Navigator.pushNamed(context, '/treasure'),
                       ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(5),
+                      child: RaisedButton(
+                        child: Text('Todo'),
+                        onPressed: () => Navigator.pushNamed(context, '/todo'),
+                      ),
                     )
                   ]),
                 ))));
